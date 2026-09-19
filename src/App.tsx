@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ConfirmationPage } from './ConfirmationPage'
 import { HomePage } from './HomePage'
 import { ReportForm } from './ReportForm'
+import { sendReportEmail } from './sendReportEmail'
 import type { Page, ReportSubmission } from './types'
 
 function createReferenceId() {
@@ -14,9 +15,11 @@ function App() {
   const [report, setReport] = useState<ReportSubmission | null>(null)
   const [referenceId, setReferenceId] = useState('')
 
-  function handleSubmitReport(submitted: ReportSubmission) {
+  async function handleSubmitReport(submitted: ReportSubmission) {
+    const nextReferenceId = createReferenceId()
+    await sendReportEmail(submitted, nextReferenceId)
     setReport(submitted)
-    setReferenceId(createReferenceId())
+    setReferenceId(nextReferenceId)
     setPage('confirmation')
   }
 

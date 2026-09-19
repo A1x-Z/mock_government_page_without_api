@@ -1,22 +1,36 @@
-import { type FormEvent } from 'react'
+import { type FormEvent, useState } from 'react'
 import { type ReportSubmission } from './types'
 
 type ReportFormProps = {
-  onSubmitReport: (report: ReportSubmission) => void
+  onSubmitReport: (report: ReportSubmission) => Promise<void>
 }
 
 export function ReportForm({ onSubmitReport }: ReportFormProps) {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    setErrorMessage('')
+    setIsSubmitting(true)
 
     const data = new FormData(event.currentTarget)
 
-    onSubmitReport({
-      description: String(data.get('description') ?? ''),
-      latitude: String(data.get('latitude') ?? ''),
-      longitude: String(data.get('longitude') ?? ''),
-      photoUrl: String(data.get('photo-url') ?? ''),
-    })
+    try {
+      await onSubmitReport({
+        description: String(data.get('description') ?? ''),
+        latitude: String(data.get('latitude') ?? ''),
+        longitude: String(data.get('longitude') ?? ''),
+        photoUrl: String(data.get('photo-url') ?? ''),
+      })
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'The report could not be emailed. Check your connection and try again.',
+      )
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -65,8 +79,19 @@ export function ReportForm({ onSubmitReport }: ReportFormProps) {
           />
         </div>
 
-        <button type="submit" id="submit-report" className="primary-button">
-          Submit Report
+        {errorMessage ? (
+          <p id="submit-error" className="error-message" role="alert">
+            {errorMessage}
+          </p>
+        ) : null}
+
+        <button
+          type="submit"
+          id="submit-report"
+          className="primary-button"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Submitting…' : 'Submit Report'}
         </button>
       </form>
     </main>

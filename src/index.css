@@ -99,9 +99,20 @@ h1 {
   background: var(--navy-dark);
 }
 
+.primary-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
 .primary-button:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
+}
+
+.error-message {
+  margin: 0;
+  color: #b42318;
+  font-weight: 700;
 }
 
 form {
