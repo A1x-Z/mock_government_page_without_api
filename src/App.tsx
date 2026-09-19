@@ -26,13 +26,9 @@ function App() {
   return (
     <div className="app">
       <header className="site-header">
-        <p className="agency-banner">
-          Official website of the Maryland Department of Transportation
-        </p>
+        <p className="agency-banner">Official government website</p>
         <div className="header-bar">
-          <span className="header-title">
-            State Highway Administration
-          </span>
+          <span className="header-title">City 311</span>
         </div>
       </header>
 
@@ -47,11 +43,8 @@ function App() {
       )}
 
       <footer className="site-footer">
-        <p>
-          This is a mock Maryland State Highway Administration website for
-          testing only.
-        </p>
-        <p>Do not submit real highway or traffic issues here.</p>
+        <p>This is a mock 311 website for testing only.</p>
+        <p>Do not submit real civic issues here.</p>
       </footer>
     </div>
   )

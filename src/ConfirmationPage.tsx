@@ -13,8 +13,8 @@ export function ConfirmationPage({
     <main className="page">
       <h1 id="confirmation-message">Report Submitted Successfully</h1>
       <p className="subtitle">
-        The Maryland State Highway Administration has received your report.
-        Keep this reference number for your records.
+        311 has received your service request. Keep this reference number for
+        your records.
       </p>
 
       <p className="reference-line">

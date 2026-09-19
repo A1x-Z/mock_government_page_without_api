@@ -37,8 +37,7 @@ export function ReportForm({ onSubmitReport }: ReportFormProps) {
     <main className="page">
       <h1>Report an Issue</h1>
       <p className="subtitle">
-        Submit a non-emergency report to the Maryland State Highway
-        Administration.
+        Submit a non-emergency 311 service request.
       </p>
 
       <form id="issue-report-form" onSubmit={handleSubmit}>

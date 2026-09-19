@@ -25,7 +25,7 @@ export async function sendReportEmail(
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      _subject: `Maryland SHA mock report ${referenceId}`,
+      _subject: `311 mock report ${referenceId}`,
       _template: 'table',
       _captcha: 'false',
       to: REPORT_EMAIL,

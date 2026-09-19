@@ -1,6 +1,6 @@
-# Maryland State Highway Administration (mock)
+# City 311 (mock)
 
-A mock MDOT State Highway Administration issue-reporting website for local testing. It has no report-submission API. Another service can later open this site in a browser (for example with Playwright), fill the public form, and read the confirmation page.
+A mock government 311 issue-reporting website for local testing. It has no report-submission API. Another service can later open this site in a browser (for example with Playwright), fill the public form, and read the confirmation page.
 
 ## Run
 
