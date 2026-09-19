@@ -6,11 +6,19 @@ type FormSubmitResponse = {
   message?: string
 }
 
+function emailEndpoint() {
+  if (import.meta.env.DEV) {
+    return '/api/email-report'
+  }
+
+  return `https://formsubmit.co/ajax/${encodeURIComponent(REPORT_EMAIL)}`
+}
+
 export async function sendReportEmail(
   report: ReportSubmission,
   referenceId: string,
 ): Promise<void> {
-  const response = await fetch('/api/email-report', {
+  const response = await fetch(emailEndpoint(), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
